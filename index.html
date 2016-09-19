@@ -31,7 +31,9 @@ The movie, though very long, was still very enjoyable.
 trees are a symbol of fertility because they do not die in the winter. 
 The actor was happy he got a part in a movie although the part was a small one.
 The museum was very interesting as I expected.
-Because he is rich, people make allowance for his idiosyncrasies.
+Because he is rich, people make allowance for his
+<span class="ql-bg-yellow">idiosyncrasies</span>
+.
 The professional, who had been thoroughly trained, was at a loss to explain.
 When she was younger, she believed in fairy tales.
 After the tornado hit the town, there was little left standing.
@@ -51,6 +53,11 @@ Some people tell me that money can’t buy happiness.
 
 <!-- Initialize Quill editor -->
 <script type="text/javascript">
+  var hardCodedList = [
+    "ambitious", "evergreen", "idiosyncrasies",
+    "tornado", "evolution", "professional"
+  ];
+ 
   var BackgroundClass = Quill.import('attributors/class/background');
   Quill.register(BackgroundClass, true);
   var quill = new Quill('#editor', {
@@ -59,6 +66,23 @@ Some people tell me that money can’t buy happiness.
       toolbar: false
     },
     placeholder: 'Type some text to check'
+  });
+
+  quill.on('text-change', function(delta, oldDelta, source) {
+    if (source == 'api') return;
+
+    console.log(quill.getText());
+    var editorWords = quill.
+      getText().
+      split(" ");
+
+    quill.setContents(
+      editorWords.map(function(word) {
+        if (hardCodedList.indexOf(word) > -1) {
+          return { insert: word + " ", attributes: { background: 'yellow' }};
+        } else return { insert: word + " "};
+      })
+    );
   });
 </script>
 
