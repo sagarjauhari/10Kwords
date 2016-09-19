@@ -3,6 +3,12 @@
 <head>
   <link href="https://cdn.quilljs.com/1.0.4/quill.snow.css" rel="stylesheet">
   <title>10K Wordss</title>
+  <style type="text/css">
+    #editor {
+      height: 375px;
+      width: 600px;
+    }
+  </style>
 </head>
 <body>
 
@@ -16,10 +22,13 @@ Because my coffee was too cold, I heated it in the microwave.
 Though he was very rich, he was still very unhappy.
 She returned the computer after she noticed it was damaged.
 When the cost goes up, customers buy less clothing.
-As she was bright and ambitious, she became manager in no time.
+As she was bright and
+<span class="ql-bg-yellow"> ambitious </span>
+, she became manager in no time.
 Wherever you go, you can always find beauty.
 The movie, though very long, was still very enjoyable.
-Evergreen trees are a symbol of fertility because they do not die in the winter. 
+<span class="ql-bg-yellow">Evergreen</span>
+trees are a symbol of fertility because they do not die in the winter. 
 The actor was happy he got a part in a movie although the part was a small one.
 The museum was very interesting as I expected.
 Because he is rich, people make allowance for his idiosyncrasies.
@@ -42,6 +51,8 @@ Some people tell me that money can’t buy happiness.
 
 <!-- Initialize Quill editor -->
 <script type="text/javascript">
+  var BackgroundClass = Quill.import('attributors/class/background');
+  Quill.register(BackgroundClass, true);
   var quill = new Quill('#editor', {
     theme: 'snow',
     modules: {
